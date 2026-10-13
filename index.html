@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080909">
+  <meta name="description" content="HackHeist 2026 by GDG on Campus MIET. Think sharp, build bold, and break limits.">
+  <title>HACKHEIST 2026 | GDG on Campus MIET</title>
+
+  <style>
+    :root {
+      --bg: #080909;
+      --surface: #111313;
+      --surface-2: #171919;
+      --text: #f4f3ef;
+      --muted: #a5a6a1;
+      --border: #292b2a;
+      --red: #ef3437;
+      --green: #00d68a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible, a:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 5px;
+    }
+
+    .container {
+      width: min(1120px, 88%);
+      margin-inline: auto;
+    }
+
+    /* NAVIGATION */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 9, 9, 0.94);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-inner {
+      min-height: 76px;
+      width: min(1400px, 92%);
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 3px;
+      white-space: nowrap;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--red);
+      color: var(--red);
+      font-size: 22px;
+      transform: rotate(-5deg);
+    }
+
+    .logo span:last-child {
+      color: var(--red);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--green);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 12px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    /* BUTTONS */
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border: 1px solid var(--red);
+      border-radius: 4px;
+      background: var(--red);
+      color: white;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px #ef343744;
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border);
+    }
+
+    /* SECTION 1: HERO */
+
+    .hero {
+      min-height: 690px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      text-align: center;
+      padding: 90px 20px 110px;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(ellipse at 80% 20%, #740b0e70, transparent 36%),
+        radial-gradient(ellipse at 15% 80%, #00482e50, transparent 35%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: 0.12;
+      background-image:
+        linear-gradient(#888 1px, transparent 1px),
+        linear-gradient(90deg, #888 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, black, transparent 90%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 28px;
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(65px, 13vw, 155px);
+      line-height: 0.88;
+      font-weight: 1000;
+      letter-spacing: -8px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--red);
+    }
+
+    .hero-tagline {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: clamp(13px, 2vw, 19px);
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .hero-details {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 30px 0;
+    }
+
+    .hero-chip {
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .hero-chip strong {
+      color: var(--text);
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 22px;
+      left: 5%;
+      right: 5%;
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero-bottom span:last-child {
+      color: var(--red);
+    }
+
+    /* COMMON SECTION STYLES */
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 15px 0 22px;
+      font-size: clamp(35px, 5vw, 62px);
+      line-height: 1.05;
+      letter-spacing: -3px;
+    }
+
+    /* SECTION 2: ABOUT */
+
+    .about {
+      border-top: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .about-text p + p {
+      margin-top: 16px;
+    }
+
+    .about-text strong {
+      color: var(--text);
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 24px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    /* SECTION 3: HIGHLIGHTS */
+
+    .highlights {
+      background: var(--surface-2);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .section-heading > p {
+      max-width: 300px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      position: relative;
+      min-height: 255px;
+      padding: 25px 22px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      transition: transform 0.25s, border-color 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--red);
+    }
+
+    .card-number {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    .card-icon {
+      width: 50px;
+      height: 50px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 30px;
+      background: #251415;
+      border: 1px solid #492426;
+      font-size: 24px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    /* SECTION 4: EVENT DETAILS */
+
+    .details {
+      border-top: 1px solid var(--border);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 80px;
+    }
+
+    .details-intro p {
+      max-width: 330px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .detail-list {
+      border-top: 1px solid var(--border);
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      align-items: center;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-label {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .detail-value {
+      font-size: clamp(19px, 2.5vw, 29px);
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .red {
+      color: var(--red);
+    }
+
+    /* SECTION 5: FINAL CTA */
+
+    .final-cta {
+      position: relative;
+      overflow: hidden;
+      background: var(--red);
+      color: white;
+      text-align: center;
+    }
+
+    .final-cta::before {
+      content: "HH";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+      color: #ffffff0b;
+      font-size: clamp(180px, 35vw, 430px);
+      font-weight: 1000;
+      letter-spacing: -20px;
+      pointer-events: none;
+    }
+
+    .final-cta .section-label {
+      color: white;
+    }
+
+    .final-cta .section-title {
+      position: relative;
+      font-size: clamp(40px, 7vw, 82px);
+    }
+
+    .final-cta p {
+      position: relative;
+      max-width: 550px;
+      margin: 0 auto 30px;
+      color: #ffffffdd;
+    }
+
+    .final-cta .btn {
+      position: relative;
+      background: white;
+      border-color: white;
+      color: #111;
+    }
+
+    .final-cta .btn:hover {
+      background: #f1f1f1;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 24px 0;
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    footer strong {
+      color: var(--text);
+    }
+
+    /* RESPONSIVE NAVIGATION AND LAYOUT */
+
+    @media (max-width: 950px) {
+      .nav-links {
+        gap: 14px;
+      }
+
+      .nav-links a {
+        font-size: 12px;
+      }
+
+      .about-grid,
+      .details-grid {
+        gap: 35px;
+      }
+
+      .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-inner {
+        min-height: 68px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 6% 18px;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 0;
+        font-size: 14px;
+      }
+
+      .nav-links .mobile-register {
+        margin-top: 8px;
+        padding: 12px 15px;
+        background: var(--red);
+        color: white;
+        text-align: center;
+      }
+
+      .desktop-register {
+        display: none;
+      }
+
+      .hero {
+        min-height: 630px;
+      }
+
+      .hero h1 {
+        letter-spacing: -4px;
+      }
+
+      .hero-tagline {
+        letter-spacing: 1.5px;
+        line-height: 1.7;
+      }
+
+      .hero-bottom {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .about-grid,
+      .details-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .section-heading {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .container {
+        width: 90%;
+      }
+
+      .logo {
+        gap: 8px;
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+
+      .logo-icon {
+        width: 31px;
+        height: 31px;
+      }
+
+      .hero {
+        padding-inline: 12px;
+      }
+
+      .hero h1 {
+        font-size: clamp(58px, 17vw, 78px);
+      }
+
+      .eyebrow {
+        gap: 7px;
+        font-size: 9px;
+        letter-spacing: 2px;
+      }
+
+      .hero-chip {
+        font-size: 11px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: 205px;
+      }
+
+      .card-icon {
+        margin-bottom: 22px;
+      }
+
+      .detail-row {
+        grid-template-columns: 80px 1fr;
+        gap: 12px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *, *::before, *::after {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SECTION 1: HERO -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="logo" aria-label="HackHeist home">
+        <span class="logo-icon">H</span>
+        <span>HACK<span>HEIST</span></span>
+      </a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >☰</button>
+
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#details">Event Details</a>
+        <a href="#register" class="mobile-register">Register Now ↗</a>
+      </nav>
+
+      <a class="btn desktop-register" href="#register">Register Now ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">GDG on Campus MIET presents</div>
+
+        <h1>HACK<span>HEIST</span></h1>
+
+        <p class="hero-tagline">
+          Think sharp. Build bold. Break limits.
+        </p>
+
+        <div class="hero-details">
+          <div class="hero-chip">
+            <strong>◷ DATE</strong> &nbsp; HackHeist 2026
+          </div>
+          <div class="hero-chip">
+            <strong>⌖ VENUE</strong> &nbsp; MIET, Meerut
+          </div>
+          <div class="hero-chip">
+            <strong>↗ TIME</strong> &nbsp; 9:00 AM onwards
+          </div>
+        </div>
+
+        <a href="https://forms.google.com/" class="btn" target="_blank" rel="noopener noreferrer">
+          Register for the Heist ↗
+        </a>
+      </div>
+
+      <div class="hero-bottom">
+        <span>One crew. Infinite possibilities.</span>
+        <span>Access granted // 2026</span>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ABOUT -->
+    <section class="section about" id="about">
+      <div class="container about-grid">
+        <div>
+          <div class="section-label">01 / The mission</div>
+          <h2 class="section-title">
+            Not just an event.<br>
+            A <span class="red">build mode.</span>
+          </h2>
+        </div>
+
+        <div class="about-text">
+          <p>
+            <strong>HackHeist</strong> is where curious minds meet hands-on
+            technology. Organized by <strong>GDG on Campus MIET</strong>,
+            it's a space to learn new tools, transform bold ideas into
+            working projects, and collaborate with people who love solving
+            problems.
+          </p>
+
+          <p>
+            From practical workshops and inspiring tech sessions to the
+            excitement of a hackathon, there's something for every aspiring
+            developer. Come for the challenge and leave with new skills,
+            new connections, and something you're proud to build.
+          </p>
+
+          <div class="status">
+            <span class="status-dot"></span>
+            Your next idea starts here
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: EVENT HIGHLIGHTS -->
+    <section class="section highlights" id="highlights">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <div class="section-label">02 / What's inside</div>
+            <h2 class="section-title">Plan your perfect heist.</h2>
+          </div>
+
+          <p>
+            Four ways to learn, collaborate, build something meaningful,
+            and make your mark.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <span class="card-number">HH / 01</span>
+            <div class="card-icon" aria-hidden="true">💻</div>
+            <h3>Hackathon</h3>
+            <p>
+              Turn your boldest ideas into real projects and showcase
+              your creativity, teamwork, and problem-solving skills.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-number">HH / 02</span>
+            <div class="card-icon" aria-hidden="true">🛠️</div>
+            <h3>Workshops</h3>
+            <p>
+              Learn practical development skills, explore useful tools,
+              and gain hands-on experience you can apply.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-number">HH / 03</span>
+            <div class="card-icon" aria-hidden="true">🎤</div>
+            <h3>Tech Sessions</h3>
+            <p>
+              Discover new ideas, explore emerging technologies,
+              and learn from experienced developers.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-number">HH / 04</span>
+            <div class="card-icon" aria-hidden="true">🤝</div>
+            <h3>Networking</h3>
+            <p>
+              Meet fellow students, find your next teammate, share ideas,
+              and connect with the developer community.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: EVENT DETAILS -->
+    <section class="section details" id="details">
+      <div class="container details-grid">
+        <div class="details-intro">
+          <div class="section-label">03 / Mission coordinates</div>
+          <h2 class="section-title">
+            Know before<br>
+            you <span class="green">go.</span>
+          </h2>
+
+          <p>
+            Save the details, gather your crew, and get ready to create
+            something extraordinary at HackHeist 2026.
+          </p>
+        </div>
+
+        <div class="detail-list">
+          <div class="detail-row">
+            <div class="detail-label">Event</div>
+            <div class="detail-value">
+              HackHeist <span class="red">2026</span>
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">Venue</div>
+            <div class="detail-value">
+              MIET <span class="red">·</span> Meerut
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">Time</div>
+            <div class="detail-value">
+              <span class="red">9:00 AM</span> onwards
+            </div>
+          </div>
+
+          <div class="detail-row">
+            <div class="detail-label">Host</div>
+            <div class="detail-value">GDG on Campus MIET</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: FINAL CALL TO ACTION -->
+    <section class="section final-cta" id="register">
+      <div class="container">
+        <div class="section-label">Your move</div>
+
+        <h2 class="section-title">Ready to HackHeist?</h2>
+
+        <p>
+          Bring your curiosity, find your crew, and be part of the build.
+          Your next big idea is one click away.
+        </p>
+
+        <a href="https://forms.google.com/" class="btn"
+           target="_blank" rel="noopener noreferrer">
+          Register Now ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span><strong>HACKHEIST</strong> / GDG on Campus MIET</span>
+      <span>Think sharp. Build bold. &copy; <span id="year">2026</span></span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation toggle
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Close navigation menu" : "Open navigation menu"
+      );
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+
+    // Close the mobile menu after selecting a navigation link
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.textContent = "☰";
+      });
+    });
+
+    // Close the mobile menu with the Escape key
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+        menuToggle.textContent = "☰";
+      }
+    });
+
+    // Keep the footer year current
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
