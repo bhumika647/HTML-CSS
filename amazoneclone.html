@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amazon Clone</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;background:#e3e6e6;color:#0f1111}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ---------- Top navbar ---------- */
+.navbar{background:#131921;color:#fff;display:flex;align-items:center;gap:12px;padding:8px 14px}
+.logo{font-size:26px;font-weight:700;letter-spacing:-1px;padding:4px 8px;border:1px solid transparent}
+.logo span{color:#ff9900}
+.logo:hover,.nav-item:hover{border-color:#fff;border-radius:2px}
+.nav-item{font-size:12px;line-height:1.3;padding:6px 8px;border:1px solid transparent;white-space:nowrap}
+.nav-item b{display:block;font-size:14px}
+.search{flex:1;display:flex;min-width:0}
+.search select{background:#e6e6e6;border:0;padding:0 8px;border-radius:4px 0 0 4px;font-size:12px}
+.search input{flex:1;min-width:0;border:0;padding:11px;font-size:15px}
+.search button{background:#febd69;border:0;padding:0 16px;font-size:18px;border-radius:0 4px 4px 0;cursor:pointer}
+.search button:hover{background:#f3a847}
+
+/* ---------- Sub navbar ---------- */
+.subnav{background:#232f3e;color:#fff;display:flex;gap:6px;padding:6px 14px;font-size:14px;overflow-x:auto;white-space:nowrap}
+.subnav a{padding:6px 8px;border:1px solid transparent}
+.subnav a:hover{border-color:#fff}
+
+/* ---------- Hero ---------- */
+.hero{min-height:360px;background:linear-gradient(135deg,#2c5364,#203a43 40%,#0f2027);color:#fff;display:flex;flex-direction:column;justify-content:center;padding:40px 8% 130px}
+.hero h1{font-size:40px;max-width:560px}
+.hero p{margin:10px 0 18px;font-size:18px;color:#d5dbdb}
+.hero a{background:#ffd814;color:#0f1111;padding:10px 22px;border-radius:20px;width:max-content;font-weight:700}
+.hero a:hover{background:#f7ca00}
+
+/* ---------- Card grid (overlaps hero like Amazon) ---------- */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:0 18px;margin-top:-90px;position:relative}
+.card{background:#fff;padding:18px;display:flex;flex-direction:column}
+.card h2{font-size:21px;margin-bottom:12px}
+.mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:1}
+.mini div{font-size:12px}
+.mini .pic{font-size:42px}
+.pic{height:90px;display:flex;align-items:center;justify-content:center;font-size:42px;background:#f0f2f2;margin-bottom:4px}
+.single .pic{height:230px;font-size:90px}
+.card .link{margin-top:14px;font-size:13px;color:#007185}
+.card .link:hover{color:#c7511f;text-decoration:underline}
+.signin{justify-content:flex-start}
+.signin button{background:#ffd814;border:0;border-radius:8px;padding:9px;font-size:14px;margin:6px 0 14px;cursor:pointer}
+.signin p{font-size:12px;color:#565959}
+
+/* ---------- Product rows ---------- */
+.row{background:#fff;margin:18px;padding:18px}
+.row h2{font-size:21px;margin-bottom:12px}
+.products{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px}
+.product{min-width:170px;flex:0 0 170px}
+.product .pic{height:150px;font-size:60px}
+.product:hover .pic{outline:2px solid #ff9900}
+.product p{font-size:13px;margin:4px 0}
+.price{font-size:18px;font-weight:700}
+.price small{font-size:12px;font-weight:400;color:#565959;text-decoration:line-through;margin-left:4px}
+.stars{color:#ffa41c;font-size:13px}
+
+/* ---------- Back to top + footer ---------- */
+.top{display:block;background:#37475a;color:#fff;text-align:center;padding:14px;font-size:13px}
+.top:hover{background:#485769}
+.footer{background:#232f3e;color:#ddd;padding:36px 8%;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.footer h3{color:#fff;font-size:16px;margin-bottom:10px}
+.footer li{font-size:14px;margin:7px 0}
+.footer a:hover{text-decoration:underline}
+.bottom{background:#131921;color:#ddd;text-align:center;padding:20px;font-size:12px}
+
+/* ---------- Media queries ---------- */
+@media (max-width:1024px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .footer{grid-template-columns:repeat(2,1fr)}
+  .hero h1{font-size:32px}
+}
+@media (max-width:768px){
+  .navbar{flex-wrap:wrap}
+  .search{order:3;flex-basis:100%}
+  .nav-item.hide-sm{display:none}
+  .hero{min-height:300px;padding:30px 6% 100px}
+  .hero h1{font-size:26px}
+  .hero p{font-size:15px}
+  .grid{margin-top:-60px;gap:12px;padding:0 12px}
+}
+@media (max-width:480px){
+  .grid{grid-template-columns:1fr;margin-top:-70px}
+  .footer{grid-template-columns:1fr;padding:28px 6%}
+  .row{margin:12px;padding:12px}
+  .search select{display:none}
+  .search input{border-radius:4px 0 0 4px}
+  .logo{font-size:22px}
+}
+</style>
+</head>
+<body id="home">
+
+<header>
+  <nav class="navbar">
+    <a href="#home" class="logo">shop<span>.in</span></a>
+    <a href="#" class="nav-item hide-sm">Deliver to<b>Meerut 250001</b></a>
+    <form class="search" action="#">
+      <select><option>All</option><option>Books</option><option>Electronics</option><option>Fashion</option></select>
+      <input type="text" placeholder="Search products">
+      <button type="button" aria-label="Search">&#128269;</button>
+    </form>
+    <a href="#" class="nav-item hide-sm">Hello, sign in<b>Account &amp; Lists</b></a>
+    <a href="#" class="nav-item hide-sm">Returns<b>&amp; Orders</b></a>
+    <a href="#" class="nav-item"><b>&#128722; Cart</b></a>
+  </nav>
+  <div class="subnav">
+    <a href="#">&#9776; All</a><a href="#">Today's Deals</a><a href="#">Mobiles</a><a href="#">Electronics</a>
+    <a href="#">Fashion</a><a href="#">Home &amp; Kitchen</a><a href="#">Books</a><a href="#">Customer Service</a><a href="#">Gift Cards</a>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Festive savings on everything you need</h1>
+  <p>Up to 60% off on mobiles, laptops and home essentials.</p>
+  <a href="#deals">Shop now</a>
+</section>
+
+<section class="grid">
+  <div class="card">
+    <h2>Up to 50% off | Fashion</h2>
+    <div class="mini">
+      <div><div class="pic">&#128085;</div>Men's wear</div>
+      <div><div class="pic">&#128087;</div>Women's wear</div>
+      <div><div class="pic">&#128095;</div>Footwear</div>
+      <div><div class="pic">&#128092;</div>Bags</div>
+    </div>
+    <a href="#" class="link">See all offers</a>
+  </div>
+  <div class="card">
+    <h2>Appliances for your home</h2>
+    <div class="mini">
+      <div><div class="pic">&#128250;</div>Televisions</div>
+      <div><div class="pic">&#129530;</div>Washing machines</div>
+      <div><div class="pic">&#10052;&#65039;</div>Air conditioners</div>
+      <div><div class="pic">&#127859;</div>Kitchen</div>
+    </div>
+    <a href="#" class="link">See more</a>
+  </div>
+  <div class="card single">
+    <h2>Top picks in electronics</h2>
+    <div class="pic">&#127911;</div>
+    <a href="#" class="link">Explore now</a>
+  </div>
+  <div class="card signin">
+    <h2>Sign in for the best experience</h2>
+    <button type="button">Sign in securely</button>
+    <p>New customer? Start here to create your account.</p>
+  </div>
+</section>
+
+<section class="row" id="deals">
+  <h2>Today's deals</h2>
+  <div class="products">
+    <a href="#" class="product"><div class="pic">&#128241;</div><p>Smartphone 5G, 128 GB</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.2</div><div class="price">&#8377;14,999<small>&#8377;19,999</small></div></a>
+    <a href="#" class="product"><div class="pic">&#128187;</div><p>Laptop 15.6", 8 GB RAM</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.0</div><div class="price">&#8377;42,490<small>&#8377;55,000</small></div></a>
+    <a href="#" class="product"><div class="pic">&#8986;</div><p>Smart watch with calling</p><div class="stars">&#9733;&#9733;&#9733;&#9734;&#9734; 3.8</div><div class="price">&#8377;1,799<small>&#8377;4,999</small></div></a>
+    <a href="#" class="product"><div class="pic">&#128247;</div><p>Mirrorless camera kit</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.6</div><div class="price">&#8377;38,900<small>&#8377;46,000</small></div></a>
+    <a href="#" class="product"><div class="pic">&#127918;</div><p>Wireless game controller</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.4</div><div class="price">&#8377;3,299<small>&#8377;4,500</small></div></a>
+    <a href="#" class="product"><div class="pic">&#128266;</div><p>Bluetooth speaker, 20 W</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.1</div><div class="price">&#8377;1,299<small>&#8377;2,999</small></div></a>
+  </div>
+</section>
+
+<section class="row">
+  <h2>Best sellers in books</h2>
+  <div class="products">
+    <a href="#" class="product"><div class="pic">&#128215;</div><p>Atomic Habits</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.6</div><div class="price">&#8377;399</div></a>
+    <a href="#" class="product"><div class="pic">&#128217;</div><p>The Psychology of Money</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4.5</div><div class="price">&#8377;299</div></a>
+    <a href="#" class="product"><div class="pic">&#128216;</div><p>Clean Code</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.4</div><div class="price">&#8377;2,100</div></a>
+    <a href="#" class="product"><div class="pic">&#128214;</div><p>Ikigai</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.3</div><div class="price">&#8377;250</div></a>
+    <a href="#" class="product"><div class="pic">&#128210;</div><p>Notebook set, pack of 4</p><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4.0</div><div class="price">&#8377;349</div></a>
+  </div>
+</section>
+
+<a href="#home" class="top">Back to top</a>
+
+<footer class="footer">
+  <div><h3>Get to know us</h3><ul><li><a href="#">About us</a></li><li><a href="#">Careers</a></li><li><a href="#">Press releases</a></li></ul></div>
+  <div><h3>Make money with us</h3><ul><li><a href="#">Sell products</a></li><li><a href="#">Become an affiliate</a></li><li><a href="#">Advertise</a></li></ul></div>
+  <div><h3>Payment products</h3><ul><li><a href="#">Credit card</a></li><li><a href="#">Gift cards</a></li><li><a href="#">Reload balance</a></li></ul></div>
+  <div><h3>Let us help you</h3><ul><li><a href="#">Your account</a></li><li><a href="#">Returns centre</a></li><li><a href="#">Help</a></li></ul></div>
+</footer>
+<div class="bottom">&copy; 2026 Practice project. Not affiliated with Amazon.</div>
+
+</body>
+</html>

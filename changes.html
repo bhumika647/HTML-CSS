@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      height: 100vh;
+      background-color: rgb(164, 204, 164);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-container {
+      background-color: white;
+      height: 80%;
+      width: 25%;
+      border-radius: 40px;
+      position: relative;
+    }
+
+    .product-image {
+      height: 50%;
+      background-color: rgb(233, 232, 232);
+      border-radius: 40px 40px 0 0;
+      display: flex;
+      justify-content: center;
+      /* overflow: hidden; */
+    }
+
+    .product-image img {
+      height: 100%;
+      transition: transform 0.5s ease-in-out;
+      /* width: 100%; */
+    }
+
+    .product-image img:hover {
+      transform: scale(1.2);
+    }
+
+    .prod-desc {
+      height: 35%;
+      border-bottom: 2px solid rgb(236, 234, 234);
+      padding: 20px;
+    }
+
+    .prod-desc h1 {
+      font-weight: 700;
+      font-size: 28px;
+      margin: 10px 0 10px 0;
+    }
+
+    .prod-desc p {
+      margin: 10px 0 10px 0;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+    }
+
+    .btn-container button {
+      width: 40%;
+      height: 2.5rem;
+      background-color: transparent;
+      border-radius: 5px;
+      border: 1px solid rgb(215, 215, 215);
+    }
+
+    .prod-price {
+      height: 15%;
+    }
+
+    .price-add-to-cart-btn {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px 0 20px;
+      height: 100%;
+    }
+
+    .price-add-to-cart-btn span {
+      font-size: 15px;
+      font-weight: 300;
+      text-decoration: line-through;
+    }
+
+    .price-add-to-cart-btn button {
+      height: 30%;
+      background: linear-gradient(to right, #45e84f, #c7ee35);
+
+      border: none;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 5px;
+      width: 60%;
+    }
+
+    .price-add-to-cart-btn button:hover {
+      transform: scale(1.1);
+      transition: 0.5s ease-in-out;
+      cursor: pointer;
+    }
+    .label {
+      border: 1px solid red;
+      width: 100px;
+      height: 30px;
+      position: absolute;
+      right: -50px;
+      top: 10px;
+      background-color: red;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius:15px ;
+    }
+
+    @media (max-width: 500px) {
+      .card-container {
+        width: 90%;
+      }
+
+      .prod-desc h1 {
+        font-size: 48px;
+      }
+      .prod-desc p {
+        font-size: 20px;
+      }
+      .price-add-to-cart-btn button {
+        font-size: 20px;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="container">
+      <div class="card-container">
+        <div class="label"><span>20% OFF</span></div>
+        <div class="product-image">
+          <img src="Screenshot 2026-09-21 160052.png" />
+        </div>
+        <div class="prod-desc">
+          <h1>Airpods Max</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis,
+            amet.
+          </p>
+
+          <div class="btn-container">
+            <button>Green</button>
+            <button>Just the device</button>
+          </div>
+        </div>
+
+        <div class="prod-price">
+          <div class="price-add-to-cart-btn">
+            <h1><span>$2000 </span>$549</h1>
+            <button>+ 🛒 Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

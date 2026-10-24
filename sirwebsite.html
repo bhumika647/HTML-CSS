@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    nav {
+        height: 60px;
+        border-bottom: 1px solid lightgrey;
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 50px;
+    }
+
+    .logo {
+        color: green;
+        font-size: 22px;
+        font-weight: 700;
+    }
+
+    .input {
+        /* border: 1px solid red; */
+        width: 35%;
+    }
+
+    .input input {
+        width: 100%;
+        padding: 10px 20px;
+        border-radius: 10px;
+        border: 1px solid lightgrey;
+    }
+
+    .nav-items {
+        display: flex;
+        gap: 20px;
+    }
+
+    .nav-items li {
+        list-style: none;
+    }
+
+    .hero {
+        height: 50vh;
+        border: 1px solid lightgrey;
+        margin: 0 80px;
+        border-radius: 20px;
+        background: linear-gradient(to right, #d8f3dc, #b7e4c7);
+        display: flex;
+        justify-content: space-between;
+        
+        padding: 40px 50px;
+    }
+    .hero-text{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .hero-text h1{
+        font-size: 45px;
+    }
+
+    .hero-text p{
+        font-size: 20px;
+    }
+
+    .hero-text button{
+        width: 25%;
+        padding: 15px ;
+        border-radius: 10px;
+        border: none;
+        background-color: green;
+        color: white;
+        font-weight: 500;
+    }
+
+    .cart-cont{
+        font-size: 120px;
+        /* border: 1px solid red; */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+     .shop{
+        height: 275px;
+        width: 100%;
+        font-size: 30px;
+        color: #2c3e50;
+        font-weight: bold;
+        background: #e7e9ed;
+        padding: 10px 50px;
+        margin-top: 20px;
+    }
+    .shop h2{
+        font-size: 30px;
+        color: #2c3e50;
+        font-weight: bold;
+        margin-bottom: 20px;
+   
+    }
+    .categories .circle1, .categories .circle2, .categories .circle3, .categories .circle4, .categories .circle5{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: inline-flex;
+        margin: 20px;
+        background-color: #d5f3ca;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+    }
+
+   
+    
+     .name{
+        display: inline-flex;
+        gap:100px;
+        
+        padding-left: 50px;
+        font-size: 15px;
+       
+    }
+    .pp h2 {
+        font-size: 30px;
+        height: 30px;
+        color: #2c3e50;
+        font-weight: bold;
+        margin: 25px 30px;
+        padding-bottom: 10px;
+        background: white;
+       
+        
+    }
+   .grid {
+        height: 600px;
+       
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 20px;
+        padding: 20px 50px;
+        
+        flex-direction: column;
+   }
+     
+    .grid .product{
+        background-color: #f5f5f5;
+        height: 300px;
+        width: 250px;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+    .product p{
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .product button{
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        border: none;
+        background-color: #7edda4;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        margin-left: 10px;
+        padding: 5px;
+    }
+    .label {
+    width: 70px;
+    height: 25px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: red;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+    .product button{
+        width: 40%;
+        height: 20px;
+        align-items: center;
+        border-radius: 20px;
+        border: none;
+        background-color: #8ddaac;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        padding:5px;
+        margin-left:10px;
+    }
+    .product .box{
+            height: 500px;
+            width: 80%;
+            background-color: #e1e9e7;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+    }
+.product h1{
+    font-size: 100px;
+}
+@media(max-width: 600px){
+    nav{
+        border :5px solid green;
+        display: grid;
+        grid-template-areas: "logo nav-items""searchInput searchInput";
+        height: auto;
+        padding: 10px 20px;
+        gap: 10px
+    }
+    .logo{
+        grid-area: logo;
+    }
+    .nav-items{
+        grid-area: nav-items;
+    }
+    .input{
+        grid-area: searchInput;
+        width: 100%;
+    }
+    .hero-wapper{
+        padding:100px 0 20px 0;
+    }
+    .hero{
+      margin: 0px;
+        height: auto;
+        flex-direction: column;
+        padding: 50px 20px;
+    }
+    .hero-image{
+        font-size: 100px;
+        text-align: center;
+}
+.hero-text h1{
+    font-size: 40px;
+}
+.hero-text p{
+    font-size: 20px;
+}
+.hero-text button{
+  
+    font-size: 18px;
+}
+.shop{
+    padding: 20px ;
+}
+
+.categories{
+    width:100%;
+    gap:20px;
+    overflow: scroll;
+    display: flex;
+}
+.grid{
+    grid-template-columns: 1fr;
+}
+.grid .product{
+width: 100%;
+    height: 350px;
+}
+
+</style>
+
+<body>
+    <nav>
+        <div class="logo">FreshMart</div>
+        <div class="input">
+            <input placeholder="Search fruits, vegitables..." />
+        </div>
+        <div class="nav-items">
+            <li>Home</li>
+            <li>Products</li>
+            <li>Cart</li>
+        </div>
+    </nav>
+
+    <main>
+        <div class="hero">
+            <div class="hero-text">
+                <h1>Fresh groceries <br> delivered to you.</h1>
+                <p>Fruits, vegetables and daily essentials delivered fresh.</p>
+                <button>Shop Now</button>
+            </div>
+
+            <div class="cart-cont">
+                🛒
+            </div>
+
+        </div>
+         <div class="shop">
+            <h2>Shop by Category</h2>
+            <div class="categories">
+                <div class="circle1"><h1>🍎</h1></div>
+                <div class="circle2"><h1>🥦</h1></div>
+                <div class="circle3"><h1>🥛</h1></div>
+                <div class="circle4"><h1>🍞</h1></div>
+                <div class="circle5"><h1>🧃</h1></div>
+            </div>
+            <div class="name">
+                <div>Fruits</div>
+                <div>Vegetables</div>
+                <div>Dairy</div>
+                <div>Bakery</div>
+                <div>Drinks</div>
+            </div>
+        </div>
+     
+        <div class="pp">
+            <h2>Popular Products</h2>
+           
+        </div>
+        <div class="grid">
+            <div class="product">
+                  <!--<img src="product1.jpg" alt="Fresh Apples">-->
+                  <div class="box">
+                        <h1>🍎</h1>
+                  </div>
+                    <p>Fresh Apples</p>
+                    <div class="label"><span>NEW</span></div>
+                    <h4>$9.99/kg</h4>
+                    <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                 <!--<img src="product2.jpg" alt="Fresh Broccoli">-->
+                    <div class="box">
+                        <h1>🥦</h1>
+                    </div>
+                    <p>Fresh Broccoli</p>
+                    <div class="label"><span>20% OFF</span></div>
+                    
+                    <h4>$8.99/kg</h4>
+                    <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                     <!--<img src="product3.jpg" alt="Fresh Milk">-->
+                    <div class="box">
+                         <h1>🥛</h1>
+                    </div>
+
+                    <p>Fresh Milk</p>
+                    <div class="label"><span>NEW</span></div>
+                   
+                    <h4>$2.99/litre</h4>
+                    <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                <!--<img src="product4.jpg" alt="Brown Bread">-->
+                <div class="box">
+                    <h1>🍞</h1>
+                </div>
+                    <p>Brown Bread</p>
+                    <div class="label"><span>SALE</span></div>
+                    
+                    <h4>$3.99/loaf</h4>
+                    <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                 <!--<img src="product5.jpg" alt="Fresh Oranges">-->
+                 <div class="box"> <h1>🍊</h1></div>
+                    <p>Fresh Oranges</p>
+                    <div class="label"><span>NEW</span></div>
+                   
+                    <h4>$6.99/kg </h4>
+                    <button>Add to Cart</button>
+            </div>
+            <div class="product">
+                   <!--<img src="product6.jpg" alt="Bananas">-->
+                   <div class="box"> 
+                    <h1>🍌</h1>
+                   </div>
+                    <p>Bananas</p>
+                    <div class="label"><span>NEW</span></div>
+                   
+                    <h4>$4.99/dozen</h4>
+                    <button>Add to Cart</button>
+            </div>
+            <div class="product"> <!--<img src="product7.jpg" alt="Tomatoes">-->
+                <div class="box">.
+                    <h1>🍅</h1>
+                </div>
+                    <p>Tomatoes</p>
+                    <div class="label"><span>NEW</span></div>
+                    
+                    <h4>$3.99/kg</h4>
+                    <button>Add to Cart</button></div>
+            <div class="product">
+                       <!--<img src="product8.jpg" alt="Orange Juice">-->
+                       <div class="box">
+                        <h1>🧃</h1>
+                       </div>
+                    <p>Apple Juice</p>
+                    <div class="label"><span>10% OFF</span></div>
+                    
+                    <h4>$3.99/litre</h4>
+                    <button>Add to Cart</button>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
