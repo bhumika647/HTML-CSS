@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechNest Computer Training Institute</title>
+  <meta name="description" content="Job-ready computer training: Full‑Stack, Data Science, Cloud & DevOps, Cybersecurity, UI/UX, and more. Classroom & online. Placement support included." />
+  <meta name="theme-color" content="#0ea5e9" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="TechNest Computer Training Institute" />
+  <meta property="og:description" content="Learn in-demand tech skills with expert mentors and guaranteed placement support." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/og-preview.png" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%230ea5e9'/%3E%3Cpath fill='white' d='M20 67l14-34h12l14 34h-12l-2-6H34l-2 6H20zm19-15h10l-5-13-5 13zM66 33h14v34H66z'/%3E%3C/svg%3E" />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --bg-elev: #0f172a;
+      --card: #0f172a;
+      --text: #e5e7eb;
+      --muted:#94a3b8;
+      --brand:#0ea5e9; /* sky-500 */
+      --brand-700:#0369a1;
+      --accent:#22d3ee; /* cyan-400 */
+      --warn:#f59e0b;
+      --ok:#22c55e;
+      --radius: 16px;
+      --ring: 0 0 0 3px color-mix(in srgb, var(--brand) 45%, transparent);
+      --shadow: 0 10px 30px rgba(2,6,23,.45);
+      --container: 1200px;
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f8fafc; --bg-elev:#ffffff; --card:#ffffff; --text:#0f172a; --muted:#475569; --shadow:0 12px 24px rgba(15,23,42,.08);}  
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Noto Sans",sans-serif;color:var(--text);background:linear-gradient(180deg, var(--bg) 0%, #0b132a 100%);}    
+    .container{max-width:var(--container); margin:0 auto; padding:0 20px}
+    /* Header */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px); background:color-mix(in srgb, var(--bg-elev) 65%, transparent); border-bottom:1px solid color-mix(in srgb, var(--muted) 18%, transparent)}
+    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
+    .brand{display:flex; gap:10px; align-items:center; text-decoration:none; color:var(--text)}
+    .brand .logo{width:34px; height:34px; display:grid; place-items:center; background:var(--brand); border-radius:12px; box-shadow:var(--shadow)}
+    .brand b{font-size:1.05rem; letter-spacing:.3px}
+    nav ul{display:flex; gap:18px; list-style:none; margin:0; padding:0}
+    nav a{color:var(--text); text-decoration:none; opacity:.9; font-weight:600}
+    nav a:hover, nav a:focus{outline:none; text-decoration:underline; text-underline-offset:4px}
+    .cta{display:flex; gap:10px}
+    .btn{--bgc:var(--brand); display:inline-flex; align-items:center; gap:8px; padding:10px 16px; border-radius:12px; border:1px solid color-mix(in srgb, var(--bg-elev) 70%, var(--brand)); background:linear-gradient(180deg, color-mix(in srgb, var(--bg-elev) 35%, var(--bg)) 0, var(--bg-elev) 100%); color:var(--text); cursor:pointer; font-weight:700; text-decoration:none; box-shadow:var(--shadow)}
+    .btn.primary{background:linear-gradient(180deg, color-mix(in srgb, var(--brand) 30%, var(--bg-elev)) 0, var(--brand-700) 100%); border-color:color-mix(in srgb, var(--brand) 70%, var(--bg));}
+    .btn:hover{filter:brightness(1.05)}
+    .btn:focus-visible{box-shadow:var(--ring)}
+    .menu{display:none}
+    @media (max-width: 960px){
+      nav ul{display:none}
+      .menu{display:inline-flex}
+      .drawer{position:fixed; inset:0 0 auto; top:64px; background:var(--bg-elev); border-top:1px solid color-mix(in srgb, var(--muted) 18%, transparent); padding:16px; display:grid; gap:10px}
+      .drawer a{padding:12px; border-radius:10px; background:color-mix(in srgb, var(--bg) 60%, transparent)}
+    }
+
+    /* Hero */
+    .hero{position:relative; overflow:hidden}
+    .hero .inner{display:grid; grid-template-columns:1.1fr .9fr; gap:30px; padding:70px 0}
+    .badge{display:inline-flex; gap:8px; align-items:center; padding:6px 10px; border-radius:999px; font-weight:700; background:color-mix(in srgb, var(--brand) 12%, var(--bg-elev)); border:1px dashed color-mix(in srgb, var(--brand) 40%, transparent)}
+    h1{font-size:clamp(1.8rem, 4vw, 3rem); line-height:1.15; margin:.6rem 0}
+    .lead{font-size:clamp(1rem, 1.5vw, 1.2rem); color:var(--muted)}
+    .hero-cta{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
+    .hero-illus{position:relative; min-height:320px; border-radius:var(--radius); background:radial-gradient(80% 60% at 70% 40%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 70%), linear-gradient(180deg, color-mix(in srgb, var(--brand) 18%, var(--bg-elev)), color-mix(in srgb, black 10%, var(--bg-elev))); box-shadow:var(--shadow); display:grid; place-items:center; isolation:isolate}
+    .chipset{width:min(92%, 520px); aspect-ratio:16/10; border-radius:20px; background:
+      linear-gradient(45deg, color-mix(in srgb, var(--brand) 15%, transparent), transparent),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--accent) 55%, transparent) 0 2px, transparent 2px 8px),
+      radial-gradient(circle at 20% 30%, color-mix(in srgb, var(--brand) 25%, transparent), transparent 40%),
+      radial-gradient(circle at 80% 70%, color-mix(in srgb, var(--accent) 35%, transparent), transparent 40%),
+      linear-gradient(180deg, #0b1020, #0c162a);
+      border:1px solid color-mix(in srgb, var(--brand) 35%, transparent); position:relative; overflow:hidden; box-shadow:var(--shadow)
+    }
+    .chipset::after{content:""; position:absolute; inset:16px; border:1px dashed color-mix(in srgb, var(--accent) 35%, transparent); border-radius:16px}
+    .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:18px}
+    .stat{padding:14px; background:color-mix(in srgb, var(--bg-elev) 60%, transparent); border:1px solid color-mix(in srgb, var(--muted) 18%, transparent); border-radius:14px; text-align:center}
+    .stat b{font-size:1.4rem}
+    @media (max-width: 960px){ .hero .inner{grid-template-columns:1fr; padding:40px 0} .stats{grid-template-columns:repeat(2,1fr)} }
+
+    /* Sections */
+    section{padding:60px 0}
+    .sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; margin-bottom:20px}
+    .sec-head h2{margin:0; font-size:clamp(1.4rem, 3vw, 2rem)}
+    .muted{color:var(--muted)}
+
+    /* Courses */
+    .grid{display:grid; gap:16px}
+    .grid.courses{grid-template-columns:repeat(3,1fr)}
+    .card{background:var(--card); border:1px solid color-mix(in srgb, var(--muted) 20%, transparent); border-radius:16px; padding:18px; box-shadow:var(--shadow); position:relative}
+    .card h3{margin:.2rem 0 .4rem}
+    .tag{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:color-mix(in srgb, var(--bg) 55%, transparent); border:1px solid color-mix(in srgb, var(--muted) 22%, transparent); font-weight:700; font-size:.85rem}
+    .card .list{margin:8px 0 0; padding-left:16px}
+    .card .list li{margin:6px 0}
+    .card .price{position:absolute; top:12px; right:12px; font-weight:900; background:linear-gradient(180deg, color-mix(in srgb, var(--warn) 25%, var(--bg-elev)), color-mix(in srgb, var(--warn) 45%, var(--bg-elev))); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .card .actions{display:flex; gap:10px; margin-top:12px}
+    @media (max-width: 1024px){ .grid.courses{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width: 680px){ .grid.courses{grid-template-columns:1fr} }
+
+    /* Features */
+    .grid.features{grid-template-columns:repeat(4,1fr)}
+    .feat{display:flex; gap:12px}
+    .icon{width:40px; height:40px; border-radius:12px; display:grid; place-items:center; background:color-mix(in srgb, var(--brand) 20%, transparent); border:1px solid color-mix(in srgb, var(--brand) 45%, transparent)}
+    @media (max-width: 960px){ .grid.features{grid-template-columns:repeat(2,1fr)} }
+
+    /* Placements */
+    .placements{background:linear-gradient(180deg, color-mix(in srgb, var(--bg-elev) 70%, transparent), transparent); border-top:1px solid color-mix(in srgb, var(--muted) 18%, transparent); border-bottom:1px solid color-mix(in srgb, var(--muted) 18%, transparent)}
+    .logo-belt{overflow:hidden; border-radius:12px; border:1px solid color-mix(in srgb, var(--muted) 18%, transparent); background:color-mix(in srgb, var(--bg) 55%, transparent)}
+    .belt{display:flex; gap:40px; align-items:center; padding:12px 20px; animation:scroll 22s linear infinite}
+    .belt:hover{animation-play-state:paused}
+    .logo{display:inline-grid; place-items:center; padding:8px 16px; border-radius:10px; border:1px dashed color-mix(in srgb, var(--muted) 24%, transparent); min-width:150px; font-weight:800; letter-spacing:.6px; opacity:.9}
+    @keyframes scroll{ 0%{ transform:translateX(0) } 100%{ transform:translateX(-50%) } }
+
+    /* FAQ */
+    .accordion{display:grid; gap:10px}
+    details{background:var(--card); border:1px solid color-mix(in srgb, var(--muted) 20%, transparent); border-radius:14px; padding:12px}
+    summary{cursor:pointer; font-weight:800}
+
+    /* Form */
+    form{display:grid; gap:14px}
+    .field{display:grid; gap:6px}
+    label{font-weight:700}
+    input, select, textarea{padding:12px 14px; border-radius:12px; border:1px solid color-mix(in srgb, var(--muted) 24%, transparent); background:color-mix(in srgb, var(--bg-elev) 65%, transparent); color:var(--text)}
+    input:focus, select:focus, textarea:focus{outline:none; box-shadow:var(--ring); border-color:color-mix(in srgb, var(--brand) 40%, var(--muted))}
+    .grid.form{grid-template-columns:repeat(2,1fr)}
+    @media (max-width: 680px){ .grid.form{grid-template-columns:1fr} }
+
+    /* Footer */
+    footer{padding:30px 0; border-top:1px solid color-mix(in srgb, var(--muted) 18%, transparent)}
+    .foot{display:grid; grid-template-columns:2fr 1fr 1fr; gap:14px}
+    .social{display:flex; gap:10px}
+    .copyright{margin-top:8px; color:var(--muted); font-size:.95rem}
+    @media (max-width: 960px){ .foot{grid-template-columns:1fr} }
+
+    /* Utilities */
+    .pill{padding:4px 8px; border-radius:999px; border:1px solid color-mix(in srgb, var(--muted) 24%, transparent)}
+    .center{display:grid; place-items:center}
+    .hide{display:none}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0}
+    [data-animate]{opacity:0; transform:translateY(10px); transition:.5s ease}
+    [data-animate].show{opacity:1; transform:none}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header role="banner">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="TechNest Home">
+        <span class="logo" aria-hidden="true">💠</span>
+        <b>TechNest Institute</b>
+      </a>
+      <nav aria-label="Primary">
+        <button class="btn menu" aria-expanded="false" aria-controls="drawer" id="menuBtn">☰ Menu</button>
+        <ul>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#placements">Placements</a></li>
+          <li><a href="#features">Facilities</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a class="btn primary" href="#enroll">Enroll</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div id="drawer" class="drawer hide" role="dialog" aria-label="Mobile menu">
+      <a href="#courses">Courses</a>
+      <a href="#placements">Placements</a>
+      <a href="#features">Facilities</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="btn primary" href="#enroll">Enroll</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main id="home" class="hero" role="main">
+    <div class="container inner">
+      <div>
+        <span class="badge" data-animate>✅ ISO Certified • Govt. Regd.</span>
+        <h1 data-animate>Launch your tech career with industry‑ready training</h1>
+        <p class="lead" data-animate>Hands‑on classes • Mentorship from engineers • Real projects • Placement assistance • EMI available</p>
+        <div class="hero-cta" data-animate>
+          <a href="#courses" class="btn primary">Explore Courses</a>
+          <a href="#enroll" class="btn" aria-label="Apply now">Apply Now</a>
+        </div>
+        <div class="stats" aria-label="Key stats">
+          <div class="stat" data-animate><b>8k+</b><div class="muted">Alumni placed</div></div>
+          <div class="stat" data-animate><b>40+</b><div class="muted">Hiring partners</div></div>
+          <div class="stat" data-animate><b>15</b><div class="muted">Years running</div></div>
+          <div class="stat" data-animate><b>95%</b><div class="muted">Course satisfaction</div></div>
+        </div>
+      </div>
+      <div class="hero-illus" aria-hidden="true">
+        <div class="chipset"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Courses -->
+  <section id="courses" aria-labelledby="courses-title">
+    <div class="container">
+      <div class="sec-head">
+        <h2 id="courses-title">Popular Courses</h2>
+        <span class="muted">Classroom & Online • Weekday / Weekend Batches</span>
+      </div>
+      <div class="grid courses">
+        <article class="card" data-animate>
+          <span class="price">₹29,999</span>
+          <span class="tag">Full‑Stack Development</span>
+          <h3>MERN / Java Full‑Stack</h3>
+          <ul class="list">
+            <li>HTML, CSS, JS, React</li>
+            <li>Node.js, Express, MongoDB / Java Spring</li>
+            <li>Git, REST APIs, Deployments</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#enroll" aria-label="Enroll in Full Stack">Enroll</a>
+            <button class="btn" data-syllabus="fullstack">Syllabus</button>
+          </div>
+        </article>
+        <article class="card" data-animate>
+          <span class="price">₹34,999</span>
+          <span class="tag">Data Science</span>
+          <h3>Python, ML & AI</h3>
+          <ul class="list">
+            <li>Python, NumPy, Pandas</li>
+            <li>ML algorithms, Model tuning</li>
+            <li>SQL & Data Visualization</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#enroll">Enroll</a>
+            <button class="btn" data-syllabus="datasci">Syllabus</button>
+          </div>
+        </article>
+        <article class="card" data-animate>
+          <span class="price">₹31,999</span>
+          <span class="tag">Cloud & DevOps</span>
+          <h3>AWS, Docker & CI/CD</h3>
+          <ul class="list">
+            <li>AWS core services</li>
+            <li>Docker, Kubernetes basics</li>
+            <li>Jenkins/GitHub Actions</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#enroll">Enroll</a>
+            <button class="btn" data-syllabus="devops">Syllabus</button>
+          </div>
+        </article>
+        <article class="card" data-animate>
+          <span class="price">₹24,999</span>
+          <span class="tag">Cybersecurity</span>
+          <h3>Ethical Hacking & SOC</h3>
+          <ul class="list">
+            <li>Network & Web Security</li>
+            <li>Threat analysis, SIEM</li>
+            <li>VAPT fundamentals</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#enroll">Enroll</a>
+            <button class="btn" data-syllabus="cyber">Syllabus</button>
+          </div>
+        </article>
+        <article class="card" data-animate>
+          <span class="price">₹19,999</span>
+          <span class="tag">UI / UX</span>
+          <h3>Design for Developers</h3>
+          <ul class="list">
+            <li>Figma, wireframes to hi‑fi</li>
+            <li>Design systems, handoff</li>
+            <li>Portfolio & case studies</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#enroll">Enroll</a>
+            <button class="btn" data-syllabus="uiux">Syllabus</button>
+          </div>
+        </article>
+        <article class="card" data-animate>
+          <span class="price">₹22,999</span>
+          <span class="tag">Core Programming</span>
+          <h3>Java / DSA</h3>
+          <ul class="list">
+            <li>OOP, Collections, Streams</li>
+            <li>DSA with interview prep</li>
+            <li>Build & deploy mini‑apps</li>
+          </ul>
+          <div class="actions">
+            <a class="btn" href="#enroll">Enroll</a>
+            <button class="btn" data-syllabus="java">Syllabus</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Placements -->
+  <section id="placements" class="placements" aria-labelledby="placements-title">
+    <div class="container">
+      <div class="sec-head">
+        <h2 id="placements-title">Our Hiring Partners</h2>
+        <span class="muted">Dedicated placement cell • Mock interviews • Resume & LinkedIn</span>
+      </div>
+      <div class="logo-belt" aria-label="Company logos">
+        <div class="belt" role="list">
+          <div class="logo" role="listitem">INFOTECH</div>
+          <div class="logo" role="listitem">CLOUDNOVA</div>
+          <div class="logo" role="listitem">DATAHUB</div>
+          <div class="logo" role="listitem">PIXELWARE</div>
+          <div class="logo" role="listitem">SECURELY</div>
+          <div class="logo" role="listitem">ZENSTACK</div>
+          <!-- Repeat for seamless loop -->
+          <div class="logo" role="listitem">INFOTECH</div>
+          <div class="logo" role="listitem">CLOUDNOVA</div>
+          <div class="logo" role="listitem">DATAHUB</div>
+          <div class="logo" role="listitem">PIXELWARE</div>
+          <div class="logo" role="listitem">SECURELY</div>
+          <div class="logo" role="listitem">ZENSTACK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" aria-labelledby="features-title">
+    <div class="container">
+      <div class="sec-head">
+        <h2 id="features-title">Facilities & Benefits</h2>
+        <span class="muted">Everything you need to learn fast and get hired</span>
+      </div>
+      <div class="grid features">
+        <div class="card feat" data-animate>
+          <div class="icon" aria-hidden="true">🖥️</div>
+          <div>
+            <b>Modern Labs</b>
+            <div class="muted">High‑spec systems • Wi‑Fi • Power backup</div>
+          </div>
+        </div>
+        <div class="card feat" data-animate>
+          <div class="icon">🧑‍🏫</div>
+          <div>
+            <b>Expert Mentors</b>
+            <div class="muted">Instructors from top product companies</div>
+          </div>
+        </div>
+        <div class="card feat" data-animate>
+          <div class="icon">🧪</div>
+          <div>
+            <b>Capstone Projects</b>
+            <div class="muted">Showcase apps reviewed by industry</div>
+          </div>
+        </div>
+        <div class="card feat" data-animate>
+          <div class="icon">📜</div>
+          <div>
+            <b>Certifications</b>
+            <div class="muted">ISO & course completion certificates</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" aria-labelledby="about-title">
+    <div class="container">
+      <div class="sec-head">
+        <h2 id="about-title">About TechNest</h2>
+        <span class="muted">Learn. Build. Get Hired.</span>
+      </div>
+      <div class="grid" style="grid-template-columns:1.2fr .8fr; align-items:center; gap:24px">
+        <div class="card" data-animate>
+          <p>We are a career‑focused training institute with 15+ years of experience. Our programs are designed with feedback from hiring managers and delivered by engineers who build products every day. You learn by doing—through labs, mini‑projects, and a resume‑ready capstone.</p>
+          <ul class="list">
+            <li>Small batches for personal attention</li>
+            <li>Hybrid learning: in‑person + online</li>
+            <li>Placement cell with interview prep</li>
+          </ul>
+        </div>
+        <div class="card center" data-animate>
+          <div>
+            <div class="pill">Next Cohort</div>
+            <h3 style="margin:.4rem 0">Oct 10, 2025</h3>
+            <div class="muted">Weekday & Weekend batches • Limited seats</div>
+            <div style="margin-top:12px"><a href="#enroll" class="btn primary">Reserve your seat</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Enroll Form -->
+  <section id="enroll" aria-labelledby="enroll-title">
+    <div class="container">
+      <div class="sec-head">
+        <h2 id="enroll-title">Enroll Now</h2>
+        <span class="muted">Fill the form—our counselor will call you within 24h</span>
+      </div>
+      <form novalidate aria-describedby="formNote">
+        <div class="grid form">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" autocomplete="name" required placeholder="e.g., Bhumika Sharma" />
+            <small class="muted" id="nameHelp">As per government ID</small>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" pattern="[0-9]{10}" required placeholder="10‑digit mobile" />
+          </div>
+          <div class="field">
+            <label for="course">Course</label>
+            <select id="course" name="course" required>
+              <option value="">Select a course</option>
+              <option>Full‑Stack (MERN/Java)</option>
+              <option>Data Science (ML/AI)</option>
+              <option>Cloud & DevOps (AWS)</option>
+              <option>Cybersecurity</option>
+              <option>UI/UX</option>
+              <option>Java / DSA</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="message">Your Goals (optional)</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us what you want to achieve"></textarea>
+        </div>
+        <div class="field">
+          <label class="sr-only" for="agree">Agree to terms</label>
+          <input id="agree" name="agree" type="checkbox" required /> I agree to the <a href="#" aria-label="View terms and conditions">terms & privacy</a>.
+        </div>
+        <div class="cta">
+          <button type="submit" class="btn primary">Submit Application</button>
+          <span id="formNote" class="muted">We respect your privacy. No spam.</span>
+        </div>
+        <p id="formToast" role="status" aria-live="polite" class="muted" style="display:none; font-weight:700"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section aria-labelledby="faq-title">
+    <div class="container">
+      <div class="sec-head">
+        <h2 id="faq-title">FAQs</h2>
+        <span class="muted">Have more questions? <a href="#contact">Contact us</a></span>
+      </div>
+      <div class="accordion">
+        <details>
+          <summary>Do you provide placement assistance?</summary>
+          <div class="muted">Yes. We run mock interviews, resume/LinkedIn reviews, referrals to partner companies, and job alerts until you get placed.</div>
+        </details>
+        <details>
+          <summary>Is there any EMI or installment facility?</summary>
+          <div class="muted">Yes, we offer flexible installment plans. Talk to our counselor for details.</div>
+        </details>
+        <details>
+          <summary>Are classes available online?</summary>
+          <div class="muted">All courses are available in both classroom and online formats. Recordings are provided.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="sec-head">
+        <h2 id="contact-title">Contact</h2>
+        <span class="muted">Visit our campus or reach us digitally</span>
+      </div>
+      <div class="grid" style="grid-template-columns:1.1fr .9fr; gap:16px">
+        <div class="card" data-animate>
+          <h3>Head Office</h3>
+          <p>2nd Floor, Tech Plaza, MG Road, Your City 560001</p>
+          <p class="muted">Mon–Sat: 9:30 AM – 7:00 PM</p>
+          <div class="social">
+            <a class="btn" href="tel:+910000000000" aria-label="Call us">📞 Call</a>
+            <a class="btn" href="mailto:hello@technest.in" aria-label="Email us">✉️ Email</a>
+            <a class="btn" href="#" aria-label="Chat on WhatsApp">💬 WhatsApp</a>
+          </div>
+        </div>
+        <div class="card center" data-animate>
+          <div>
+            <div class="pill">Map</div>
+            <p class="muted">Embed your Google Map iframe here.</p>
+            <!-- <iframe src="YOUR_MAP_EMBED" width="100%" height="260" style="border:0; border-radius:12px" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container foot">
+      <div>
+        <a class="brand" href="#home"><span class="logo" aria-hidden="true">💠</span><b>TechNest Institute</b></a>
+        <p class="muted">© <span id="year"></span> TechNest Education Pvt. Ltd. All rights reserved.</p>
+        <div class="copyright">CIN: 1234-5678 • ISO 9001:2015</div>
+      </div>
+      <div>
+        <b>Quick Links</b>
+        <ul class="list">
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#enroll">Admissions</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Terms & Privacy</a></li>
+        </ul>
+      </div>
+      <div>
+        <b>Newsletter</b>
+        <form id="newsletter" class="" novalidate>
+          <label class="sr-only" for="newsEmail">Email</label>
+          <input id="newsEmail" type="email" placeholder="you@example.com" aria-label="Email for newsletter" />
+          <button class="btn" style="margin-top:8px">Subscribe</button>
+          <p id="newsToast" role="status" aria-live="polite" class="muted" style="display:none; font-weight:700"></p>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Helpers
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
+
+    // Year
+    $('#year').textContent = new Date().getFullYear();
+
+    // Mobile menu toggle
+    const menuBtn = $('#menuBtn');
+    const drawer = $('#drawer');
+    menuBtn?.addEventListener('click', () => {
+      const open = drawer.classList.toggle('hide');
+      const expanded = !(drawer.classList.contains('hide'));
+      menuBtn.setAttribute('aria-expanded', expanded);
+    });
+    // Close drawer on link click
+    $$('#drawer a').forEach(a => a.addEventListener('click', () => {
+      drawer.classList.add('hide');
+      menuBtn.setAttribute('aria-expanded', false);
+    }));
+
+    // Smooth scroll & active link highlighting
+    const links = $$('a[href^="#"]');
+    links.forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      const el = $(id);
+      if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    }));
+    const sections = ['#courses','#placements','#features','#about','#contact','#enroll'].map(id=>({id, el:$(id)}));
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const id = '#' + entry.target.id;
+          $$('nav a').forEach(a=>a.classList.toggle('active', a.getAttribute('href')===id));
+        }
+      })
+    },{threshold:.35});
+    sections.forEach(s=>s.el && observer.observe(s.el));
+
+    // Reveal animations (respect reduced motion)
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!prefersReduced){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+      }, {threshold:.2});
+      $$('[data-animate]').forEach(el => io.observe(el));
+    } else {
+      $$('[data-animate]').forEach(el => el.classList.add('show'));
+    }
+
+    // Syllabus modals (simple alert placeholder)
+    $$('button[data-syllabus]').forEach(btn => btn.addEventListener('click', () => {
+      const map = {
+        fullstack: 'HTML/CSS, JavaScript, React, Node/Express, MongoDB, Git, REST, Auth, Testing, CI/CD, Deployments',
+        datasci: 'Python, NumPy, Pandas, EDA, Stats, ML, Model Tuning, SQL, Visualization, Capstone',
+        devops: 'Linux, Networking, AWS, Docker, CI/CD, IaC basics, Monitoring, Cloud Deployments',
+        cyber: 'Networking, Web Sec, OWASP, VAPT basics, SIEM, SOC workflows',
+        uiux: 'Research, Wireframing, Visual Design, Design Systems, Prototyping, Handoff',
+        java: 'Core Java, OOP, Collections, Streams, Multithreading, JDBC, Spring basics, DSA'
+      };
+      alert('Syllabus Highlights:\n\n' + map[btn.dataset.syllabus]);
+    }));
+
+    // Enroll form validation (demo)
+    $('form')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form));
+      const errors = [];
+      if(!data.name || data.name.trim().length < 3) errors.push('Enter a valid full name');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email||'')) errors.push('Enter a valid email');
+      if(!/^\d{10}$/.test(data.phone||'')) errors.push('Enter a 10‑digit phone number');
+      if(!data.course) errors.push('Select a course');
+      if(!$('#agree').checked) errors.push('Please accept terms & privacy');
+      const toast = $('#formToast');
+      if(errors.length){
+        toast.style.display='block';
+        toast.style.color='tomato';
+        toast.textContent = 'Please fix: ' + errors.join(', ');
+        return;
+      }
+      toast.style.display='block';
+      toast.style.color='var(--ok)';
+      toast.textContent = '✅ Thanks, ' + data.name.split(' ')[0] + '! We\'ll contact you shortly.';
+      e.target.reset();
+    });
+
+    // Newsletter
+    $('#newsletter')?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = $('#newsEmail').value.trim();
+      const toast = $('#newsToast');
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+        toast.style.display='block'; toast.style.color='tomato'; toast.textContent='Please enter a valid email.'; return;
+      }
+      toast.style.display='block'; toast.style.color='var(--ok)'; toast.textContent='Subscribed! 🎉';
+      $('#newsEmail').value='';
+    });
+  </script>
+</body>
+</html>
